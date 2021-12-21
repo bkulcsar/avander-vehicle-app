@@ -2,6 +2,7 @@
 using Avander.VehicleApp.Application.Models.Csv;
 using Avander.VehicleApp.Domain.Entities;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,27 +23,9 @@ namespace Avander.VehicleApp.Application.Features.Measurements.Commands
 
             if (files.Count > 0)
             {
-                CsvParserOptions csvParserOptions = new CsvParserOptions(false, ';');
-                CsvMeasurementMapping csvMapper = new CsvMeasurementMapping();
-                CsvParser<MeasurementData> csvParser = new CsvParser<MeasurementData>(csvParserOptions, csvMapper);
-
                 foreach (var file in files)
                 {
-                    using (var memoryStream = file.OpenReadStream())
-                    {
-                        var results = csvParser.ReadFromStream(memoryStream, Encoding.Latin1).ToList(); ;
-                        results.RemoveRange(0, 5);
-
-                        foreach (var mappingResult in results)
-                        {
-                            if (mappingResult.IsValid)
-                            {
-
-                            }
-                        }
-                    }
-
-
+                    this.ProcessCsvFile(file);
                 }
 
                 
@@ -52,5 +35,28 @@ namespace Avander.VehicleApp.Application.Features.Measurements.Commands
 
             throw new NotImplementedException();
         }
+
+        private void ProcessCsvFile(IFormFile file)
+        {
+            CsvParserOptions csvParserOptions = new CsvParserOptions(false, ';');
+            CsvMeasurementMapping csvMapper = new CsvMeasurementMapping();
+            CsvParser<MeasurementData> csvParser = new CsvParser<MeasurementData>(csvParserOptions, csvMapper);
+
+            using (var memoryStream = file.OpenReadStream())
+            {
+                var results = csvParser.ReadFromStream(memoryStream, Encoding.Latin1).ToList(); ;
+                results.RemoveRange(0, 5);
+
+                foreach (var mappingResult in results)
+                {
+                    if (mappingResult.IsValid)
+                    {
+
+                    }
+                }
+            }
+        }
     }
+
+    
 }
