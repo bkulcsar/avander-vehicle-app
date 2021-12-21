@@ -1,0 +1,60 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32002.261
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{2C260BBD-3996-4A4D-AA6B-6474BAA26288}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{668E7DB0-859F-44CD-9615-A8FB0BEE015D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{CBB1ADDB-9F2D-47CF-88D4-87B21ECCF4DE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{B9F0A889-B357-480D-BCD6-292A71621937}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Avander.VehicleApp.Api", "Avander.VehicleApp.Api\Avander.VehicleApp.Api.csproj", "{55C576B3-E65E-457F-AB5F-DF042259A8CD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Avander.VehicleApp.Domain", "Avander.VehicleApp.Domain\Avander.VehicleApp.Domain.csproj", "{5A77755D-71C5-4C05-8F60-CFB411C65E94}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Avander.VehicleApp.Persistence", "Avander.VehicleApp.Persistence\Avander.VehicleApp.Persistence.csproj", "{6F1EE1F8-8836-4262-9185-B0BEC3823246}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Avander.VehicleApp.Application", "Avander.VehicleApp.Application\Avander.VehicleApp.Application.csproj", "{9603B275-62CB-4AD6-9FE0-8B889039096B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{55C576B3-E65E-457F-AB5F-DF042259A8CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55C576B3-E65E-457F-AB5F-DF042259A8CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55C576B3-E65E-457F-AB5F-DF042259A8CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55C576B3-E65E-457F-AB5F-DF042259A8CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A77755D-71C5-4C05-8F60-CFB411C65E94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A77755D-71C5-4C05-8F60-CFB411C65E94}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A77755D-71C5-4C05-8F60-CFB411C65E94}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A77755D-71C5-4C05-8F60-CFB411C65E94}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F1EE1F8-8836-4262-9185-B0BEC3823246}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F1EE1F8-8836-4262-9185-B0BEC3823246}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F1EE1F8-8836-4262-9185-B0BEC3823246}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F1EE1F8-8836-4262-9185-B0BEC3823246}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9603B275-62CB-4AD6-9FE0-8B889039096B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9603B275-62CB-4AD6-9FE0-8B889039096B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9603B275-62CB-4AD6-9FE0-8B889039096B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9603B275-62CB-4AD6-9FE0-8B889039096B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{668E7DB0-859F-44CD-9615-A8FB0BEE015D} = {2C260BBD-3996-4A4D-AA6B-6474BAA26288}
+		{CBB1ADDB-9F2D-47CF-88D4-87B21ECCF4DE} = {2C260BBD-3996-4A4D-AA6B-6474BAA26288}
+		{B9F0A889-B357-480D-BCD6-292A71621937} = {2C260BBD-3996-4A4D-AA6B-6474BAA26288}
+		{55C576B3-E65E-457F-AB5F-DF042259A8CD} = {668E7DB0-859F-44CD-9615-A8FB0BEE015D}
+		{5A77755D-71C5-4C05-8F60-CFB411C65E94} = {CBB1ADDB-9F2D-47CF-88D4-87B21ECCF4DE}
+		{6F1EE1F8-8836-4262-9185-B0BEC3823246} = {B9F0A889-B357-480D-BCD6-292A71621937}
+		{9603B275-62CB-4AD6-9FE0-8B889039096B} = {CBB1ADDB-9F2D-47CF-88D4-87B21ECCF4DE}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EB1D3304-984E-4C41-B2E0-EAE528358D27}
+	EndGlobalSection
+EndGlobal
