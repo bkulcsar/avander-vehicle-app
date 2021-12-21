@@ -1,22 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Avander.VehicleApp.Domain.Entities
+namespace Avander.VehicleApp.Application.Features.Measurements.Queries
 {
-    public class Vehicle
+    public class VehicleDto
     {
         public int VehicleId { get; set; }
 
-        [MaxLength(15)]
         public string JSN { get; set; }
 
-        [MaxLength(50)]
         public string VehicleModel { get; set; }
-
-        public List<Measurement> Measurements;
     }
 }

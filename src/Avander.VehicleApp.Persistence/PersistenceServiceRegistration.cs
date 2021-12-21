@@ -19,6 +19,10 @@ namespace Avander.VehicleApp.Persistence
                 options.UseSqlServer(configuration.GetConnectionString("AvanderVehicleConnectionString")));
 
             services.AddScoped(typeof(IAsyncRepository<>), typeof(BaseRepository<>));
+            services.AddScoped<IVehicleRepository, VehicleRepository>();
+            services.AddScoped<IShopRepository, ShopRepository>();
+            services.AddScoped<IMeasurementPointRepository, MeasurementPointRepository>();
+            services.AddScoped<IMeasurementRepository, MeasurementRepository>();
 
             return services;
         }

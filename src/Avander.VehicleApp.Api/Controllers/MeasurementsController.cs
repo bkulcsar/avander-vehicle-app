@@ -1,4 +1,5 @@
 ﻿using Avander.VehicleApp.Application.Features.Measurements.Commands;
+using Avander.VehicleApp.Application.Features.Measurements.Queries;
 using Avander.VehicleApp.Application.Models;
 using MediatR;
 using Microsoft.AspNetCore.Http;
@@ -32,5 +33,18 @@ namespace Avander.VehicleApp.Api.Controllers
             await _mediator.Send(uploadCommand);
             return NoContent();
         }
+
+        [HttpGet(Name = "GetMeasurements")]
+        public async Task<ActionResult<List<MeasurementListVm>>> GetMeasurements()
+        {
+            var query = new GetMeasurementListQuery()
+            {
+                Query = HttpContext.Request.Query
+            };
+
+            var measurements = await _mediator.Send(query);
+            return Ok(measurements);
+        }
+
     }
 }

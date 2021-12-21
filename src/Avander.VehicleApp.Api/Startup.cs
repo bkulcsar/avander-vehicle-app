@@ -1,3 +1,4 @@
+using Avander.VehicleApp.Api.Middleware;
 using Avander.VehicleApp.Application;
 using Avander.VehicleApp.Persistence;
 using Microsoft.AspNetCore.Builder;
@@ -51,7 +52,7 @@ namespace Avander.VehicleApp.Api
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            app.UseCustomExceptionHandler();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

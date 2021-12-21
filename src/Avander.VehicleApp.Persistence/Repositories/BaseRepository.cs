@@ -16,12 +16,18 @@ namespace Avander.VehicleApp.Persistence.Repositories
         {
             _dbContext = dbContext;
         }
-        public async Task<T> AddAsync(T entity)
+        public virtual async Task<T> AddAsync(T entity)
         {
             await _dbContext.Set<T>().AddAsync(entity);
             await _dbContext.SaveChangesAsync();
 
             return entity;
+        }
+
+        public async Task AddRange(IEnumerable<T> entities)
+        {
+            await _dbContext.Set<T>().AddRangeAsync(entities);
+            await _dbContext.SaveChangesAsync();
         }
 
         public async Task DeleteAsync(T entity)
@@ -30,7 +36,7 @@ namespace Avander.VehicleApp.Persistence.Repositories
             await _dbContext.SaveChangesAsync();
         }
 
-        public virtual async Task<T> GetByIdAsync(Guid id)
+        public virtual async Task<T> GetByIdAsync(int id)
         {
             return await _dbContext.Set<T>().FindAsync(id);
         }

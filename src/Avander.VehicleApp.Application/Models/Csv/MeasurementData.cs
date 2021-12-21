@@ -13,8 +13,19 @@ namespace Avander.VehicleApp.Application.Models.Csv
         public string VehicleModel { get; set; }
         public string ShopName { get; set; }
         public DateTime Date { get; set; }
-        public DateTime Time { get; set; }
-        public decimal Flush { get; set; }
-        public decimal Gap { get; set; }
+        public TimeSpan Time { get; set; }
+        public string Flush { get; set; }
+        public string Gap { get; set; }
+
+        public DateTime GetDateTime()
+        {
+            return new DateTime(
+                Date.Year,
+                Date.Month,
+                Date.Day,
+                Time.Hours,
+                Time.Minutes,
+                Time.Seconds);
+        }
     }
 }
