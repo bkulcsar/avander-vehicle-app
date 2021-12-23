@@ -16,7 +16,5 @@ namespace Avander.VehicleApp.Domain.Entities
 
         [MaxLength(50)]
         public string VehicleModel { get; set; }
-
-        public List<Measurement> Measurements;
     }
 }

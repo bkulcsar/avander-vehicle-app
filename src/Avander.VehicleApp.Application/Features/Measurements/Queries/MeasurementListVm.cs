@@ -10,8 +10,8 @@ namespace Avander.VehicleApp.Application.Features.Measurements.Queries
     public class MeasurementListVm
     {
         public int MeasurementId { get; set; }
-        public decimal Gap { get; set; }
-        public decimal Flush { get; set; }
+        public decimal? Gap { get; set; }
+        public decimal? Flush { get; set; }
         public DateTime Date { get; set; }
         public int VehicleId { get; set; }
         public VehicleDto Vehicle { get; set; }

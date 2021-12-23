@@ -52,5 +52,28 @@ namespace Avander.VehicleApp.Persistence.Repositories
                 return measurement;
             }
         }
+
+        public async Task<List<Measurement>> GetAllWithParentsPaged(int page = 1, int size = 50)
+        {
+            var result = await _dbContext.Measurements
+                .Include(x => x.MeasurementPoint)
+                .Include(x => x.Vehicle)
+                .Include(x => x.Shop)
+                .Skip((page - 1) * size)
+                .Take(size)
+                .OrderBy(x => x.Id).ToListAsync();
+
+            return result;
+        }
+
+        public async Task<List<Measurement>> GetAllPaged(int page = 1, int size = 50)
+        {
+            var result = await _dbContext.Measurements
+                .Skip((page - 1) * size)
+                .Take(size)
+                .OrderBy(x => x.Id).ToListAsync();
+
+            return result;
+        }
     }
 }

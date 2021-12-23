@@ -35,13 +35,8 @@ namespace Avander.VehicleApp.Api.Controllers
         }
 
         [HttpGet(Name = "GetMeasurements")]
-        public async Task<ActionResult<List<MeasurementListVm>>> GetMeasurements()
+        public async Task<ActionResult<List<MeasurementListVm>>> GetMeasurements([FromQuery] GetMeasurementListQuery query)
         {
-            var query = new GetMeasurementListQuery()
-            {
-                Query = HttpContext.Request.Query
-            };
-
             var measurements = await _mediator.Send(query);
             return Ok(measurements);
         }
