@@ -19,4 +19,8 @@
     <ProjectReference Include="..\Avander.VehicleApp.Domain\Avander.VehicleApp.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\Measurements\" />
+  </ItemGroup>
+
 </Project>

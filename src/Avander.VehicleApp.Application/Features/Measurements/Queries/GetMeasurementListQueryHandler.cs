@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Avander.VehicleApp.Application.Features.Measurements.Queries
 {
-    public class GetMeasurementListQueryHandler : IRequestHandler<GetMeasurementListQuery, List<MeasurementListVm>>
+    public class GetMeasurementListQueryHandler : IRequestHandler<GetMeasurementListQuery, GetMeasurementListQueryResponse>
     {
         private readonly IMeasurementRepository _measurementRepository;
         private readonly IVehicleRepository _vehicleRepository;
@@ -33,16 +33,20 @@ namespace Avander.VehicleApp.Application.Features.Measurements.Queries
             _mapper = mapper;
         }
 
-        public async Task<List<MeasurementListVm>> Handle(GetMeasurementListQuery request, CancellationToken cancellationToken)
+        public async Task<GetMeasurementListQueryResponse> Handle(GetMeasurementListQuery request, CancellationToken cancellationToken)
         {
-            List<MeasurementListVm> response = new List<MeasurementListVm>();
+            GetMeasurementListQueryResponse response = new GetMeasurementListQueryResponse()
+            {
+                MeasurementListVms = new List<MeasurementListVm>(),
+                TotalCount = 0
+            };
             List<Measurement> result;
             var page = request.Page.HasValue ? request.Page.Value : 1;
             var size = request.Size.HasValue ? request.Size.Value : 50;
 
             if (request.Expand.HasValue && request.Expand.Value)
             {
-                result = await _measurementRepository.GetAllWithParentsPaged(page, size);
+                result =  await _measurementRepository.GetAllWithParentsPaged(page, size);
             }
             else
             {
@@ -51,6 +55,9 @@ namespace Avander.VehicleApp.Application.Features.Measurements.Queries
 
             if (result != null && result.Count > 0)
             {
+                var total = _measurementRepository.GetTotalCount();
+                response.TotalCount = total;
+
                 foreach (var measurement in result)
                 {
                     var measurementListVm = _mapper.Map<MeasurementListVm>(measurement);
@@ -58,7 +65,7 @@ namespace Avander.VehicleApp.Application.Features.Measurements.Queries
                     measurementListVm.Shop = _mapper.Map<ShopDto>(measurement.Shop);
                     measurementListVm.Vehicle = _mapper.Map<VehicleDto>(measurement.Vehicle);
 
-                    response.Add(measurementListVm);
+                    response.MeasurementListVms.Add(measurementListVm);
                 }
             }
 

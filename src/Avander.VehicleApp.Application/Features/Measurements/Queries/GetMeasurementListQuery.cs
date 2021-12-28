@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Avander.VehicleApp.Application.Features.Measurements.Queries
 {
-    public class GetMeasurementListQuery : IRequest<List<MeasurementListVm>>
+    public class GetMeasurementListQuery : IRequest<GetMeasurementListQueryResponse>
     {
         [FromQuery(Name = "expand")]
         public bool? Expand { get; set; }

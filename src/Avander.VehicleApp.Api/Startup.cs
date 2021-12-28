@@ -37,6 +37,14 @@ namespace Avander.VehicleApp.Api
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Avander.VehicleApp.Api", Version = "v1" });
             });
+            services.AddCors(options =>
+            {
+                options.AddPolicy("Open", builder => builder
+                    .AllowAnyOrigin()
+                    .AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .WithExposedHeaders("X-Total-Count"));
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,6 +62,7 @@ namespace Avander.VehicleApp.Api
             app.UseRouting();
             app.UseCustomExceptionHandler();
             app.UseAuthorization();
+            app.UseCors("Open");
 
             app.UseEndpoints(endpoints =>
             {

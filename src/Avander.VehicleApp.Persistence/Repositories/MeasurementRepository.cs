@@ -53,6 +53,13 @@ namespace Avander.VehicleApp.Persistence.Repositories
             }
         }
 
+        public int GetTotalCount()
+        {
+            var result = _dbContext.Measurements.Count();
+
+            return result;
+        }
+
         public async Task<List<Measurement>> GetAllWithParentsPaged(int page = 1, int size = 50)
         {
             var result = await _dbContext.Measurements

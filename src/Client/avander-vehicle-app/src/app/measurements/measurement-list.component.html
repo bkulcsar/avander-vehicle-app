@@ -1,0 +1,126 @@
+<div>
+  <div class="row">
+    <div class="col">
+      <div class="row">
+        <div class="col"><h5>Filters</h5></div>
+      </div>
+      <div class="row">
+        <div class="col-5">
+          <div class="row mb-2">
+            <div class="col">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">JSN</span>
+                </div>
+                <input type="text" class="form-control" />
+              </div>
+            </div>
+          </div>
+          <div class="row mb-2">
+            <div class="col">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Shop</span>
+                </div>
+
+                <input type="text" class="form-control" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-5">
+          <div class="row mb-2">
+            <div class="col">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Measurement Point</span>
+                </div>
+
+                <input type="text" class="form-control" />
+              </div>
+            </div>
+          </div>
+          <div class="row mb-2">
+            <div class="col">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Date</span>
+                </div>
+
+                <input type="text" class="form-control" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-2">
+          <div class="row mb-2">
+            <div class="col">
+              <button type="button" class="btn btn-info w-100">Apply</button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <button type="button" class="btn btn-light w-100">Clear</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mb-2">
+    <div class="col">
+      <div
+        class="table-responsive border table-header-fixed"
+        style="max-height: 65vh"
+      >
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Id</th>
+              <th scope="col">Vehicle</th>
+              <th scope="col">JSN</th>
+              <th scope="col">Measurement Point</th>
+              <th scope="col">Shop</th>
+              <th scope="col">Gap</th>
+              <th scope="col">Flush</th>
+              <th scope="col">Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let measurement of measurements">
+              <th scope="row">{{ measurement.id }}</th>
+              <td>{{ measurement.vehicle?.vehicleModel }}</td>
+              <td>{{ measurement.vehicle?.jsn }}</td>
+              <td>{{ measurement.measurementPoint?.name }}</td>
+              <td>{{ measurement.shop?.name }}</td>
+              <td>{{ measurement.gap }}</td>
+              <td>{{ measurement.flush }}</td>
+              <td>{{ measurement.date | date: "medium" }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="row text-center">
+    <div class="col">
+      <nav>
+        <ul class="pagination justify-content-center">
+          <li class="page-item">
+            <a class="page-link" href="#" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+          <li class="page-item" *ngFor="let number of pageNumber">
+            <a class="page-link" href="#">{{ number }}</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="#" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
