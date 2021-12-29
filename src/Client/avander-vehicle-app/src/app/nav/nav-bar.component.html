@@ -21,12 +21,15 @@
             class="nav-link"
             routerLink="/"
             routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
             aria-current="page"
             >Measurements</a
           >
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/upload">Upload Measurement</a>
+          <a class="nav-link" routerLink="/upload" routerLinkActive="active"
+            >Upload Measurement</a
+          >
         </li>
       </ul>
     </div>
