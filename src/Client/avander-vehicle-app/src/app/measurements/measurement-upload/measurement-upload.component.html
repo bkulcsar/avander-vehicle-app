@@ -1,18 +1,50 @@
-<form class="mt-2">
-  <div class="form-group"><h4>Upload Measurement files</h4></div>
-  <div class="form-group">
-    <div class="custom-file">
-      <input
-        type="file"
-        class="custom-file-input"
-        id="customFile"
-        accept=".csv"
-        multiple
-      />
-      <label class="custom-file-label" for="customFile">Choose file</label>
+<form class="mt-2" #uploadForm="ngForm" (ngSubmit)="onSubmit()">
+  <div class="row mb-1">
+    <div class="col">
+      <div class="form-group"><h4>Upload Measurement files</h4></div>
     </div>
   </div>
-  <div class="form-group">
-    <button type="button" class="btn btn-primary">Upload</button>
+  <div class="row">
+    <div class="col">
+      <div class="form-group">
+        <div class="custom-file">
+          <input
+            type="file"
+            class="custom-file-input"
+            id="customFile"
+            accept=".csv"
+            multiple
+            (change)="onFileChange($event)"
+          />
+          <label class="custom-file-label" for="customFile">{{ label }}</label>
+        </div>
+      </div>
+    </div>
+    <div class="col text-center">
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary w-50">
+          <div *ngIf="uploading">
+            <span class="spinner-border spinner-border-sm" role="status"></span>
+            Importing...
+          </div>
+
+          <div *ngIf="!uploading">Import</div>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="row" *ngIf="showSuccess">
+    <div class="col">
+      <div class="alert alert-success" role="alert">
+        Import has been succeded!
+      </div>
+    </div>
+  </div>
+  <div class="row" *ngIf="showError">
+    <div class="col">
+      <div class="alert alert-danger" role="alert">
+        Import has been failed. Please try again later.
+      </div>
+    </div>
   </div>
 </form>

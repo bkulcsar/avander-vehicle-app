@@ -44,10 +44,26 @@ export class MeasurementService {
       );
   }
 
+  uploadMeasurements(files: any): Observable<HttpResponse<any>> {
+    const formData = new FormData();
+
+    for (const file of files) {
+      formData.append(file.name, file);
+    }
+
+    return this.http
+      .post<HttpResponse<any>>(this.url + '/upload', formData, {
+        observe: 'response',
+      })
+      .pipe(
+        catchError(this.handleError<HttpResponse<any>>('uploadMeasurements'))
+      );
+  }
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.log('Error', error);
-      return of(result as T);
+      return of(error);
     };
   }
 }

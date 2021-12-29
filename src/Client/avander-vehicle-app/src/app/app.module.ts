@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 import {
   MeasurementListComponent,
+  MeasurementUploadComponent,
   MeasurementService,
   MeasurementListResolver,
   ShopService,
@@ -17,9 +19,15 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
-  declarations: [AppComponent, NavBarComponent, MeasurementListComponent],
+  declarations: [
+    AppComponent,
+    NavBarComponent,
+    MeasurementListComponent,
+    MeasurementUploadComponent,
+  ],
   imports: [
     BrowserModule,
+    CommonModule,
     FormsModule,
     AppRoutingModule,
     NgbModule,

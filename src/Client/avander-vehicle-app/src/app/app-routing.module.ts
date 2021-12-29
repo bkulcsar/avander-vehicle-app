@@ -3,9 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 import {
   MeasurementListResolver,
   MeasurementListComponent,
+  MeasurementUploadComponent,
   ShopListResolver,
 } from './measurements/index';
-import { MeasurementUploadComponent } from './measurements/measurement-upload';
 
 const routes: Routes = [
   {
