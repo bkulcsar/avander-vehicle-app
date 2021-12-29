@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Resolve } from '@angular/router';
-import { MeasurementService } from '.';
+import { MeasurementService } from '../shared/index';
 
 @Injectable()
 export class MeasurementListResolver implements Resolve<any> {

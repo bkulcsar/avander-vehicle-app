@@ -1,4 +1,2 @@
-export * from './measurement-list-resolver.service';
-export * from './measurement-list.component';
+export * from './measurement-list/index';
 export * from './shared/index';
-export * from './shop-list-resolver.service';

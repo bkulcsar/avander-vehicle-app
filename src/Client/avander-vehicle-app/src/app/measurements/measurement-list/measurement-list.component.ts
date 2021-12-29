@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { IMeasurement, IShop } from '.';
-import { MeasurementService } from './shared/measurement.service';
+import { IMeasurement, IShop, MeasurementService } from '../shared/index';
 
 @Component({
   selector: 'measurement-list',

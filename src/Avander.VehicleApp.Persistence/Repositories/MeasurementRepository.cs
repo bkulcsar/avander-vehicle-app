@@ -96,9 +96,7 @@ namespace Avander.VehicleApp.Persistence.Repositories
             DateTime? fromDate = null, 
             DateTime? toDate = null)
         {
-            var query = _dbContext.Measurements
-                .Skip((page - 1) * size)
-                .Take(size);
+            var query = _dbContext.Measurements.AsQueryable();
 
             if (includeParents)
             {
@@ -129,9 +127,12 @@ namespace Avander.VehicleApp.Persistence.Repositories
                 query = query.Where(x => x.Date <= toDate);
             }
 
-            query = query.OrderBy(x => x.Id);
+            var orderedQuery = query
+                .Skip((page - 1) * size)
+                .Take(size)
+                .OrderBy(x => x.Id);
 
-            return await query.ToListAsync();
+            return await orderedQuery.ToListAsync();
         }
     }
 }

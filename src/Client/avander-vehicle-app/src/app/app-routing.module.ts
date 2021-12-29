@@ -5,6 +5,7 @@ import {
   MeasurementListComponent,
   ShopListResolver,
 } from './measurements/index';
+import { MeasurementUploadComponent } from './measurements/measurement-upload';
 
 const routes: Routes = [
   {
@@ -14,6 +15,10 @@ const routes: Routes = [
       measurementsResponse: MeasurementListResolver,
       shops: ShopListResolver,
     },
+  },
+  {
+    path: 'upload',
+    component: MeasurementUploadComponent,
   },
 ];
 
