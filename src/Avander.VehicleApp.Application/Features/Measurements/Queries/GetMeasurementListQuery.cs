@@ -19,5 +19,20 @@ namespace Avander.VehicleApp.Application.Features.Measurements.Queries
 
         [FromQuery(Name = "size")]
         public int? Size { get; set; }
+
+        [FromQuery(Name = "jsn")]
+        public string JSN { get; set; }
+
+        [FromQuery(Name = "measurementpoint")]
+        public string MeasurementPoint { get; set; }
+
+        [FromQuery(Name = "shop")]
+        public int? Shop { get; set; }
+
+        [FromQuery(Name = "fromdate")]
+        public DateTime? FromDate { get; set; }
+
+        [FromQuery(Name = "todate")]
+        public DateTime? ToDate { get; set; }
     }
 }

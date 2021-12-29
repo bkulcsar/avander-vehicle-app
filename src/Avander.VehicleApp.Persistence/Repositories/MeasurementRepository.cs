@@ -53,34 +53,85 @@ namespace Avander.VehicleApp.Persistence.Repositories
             }
         }
 
-        public int GetTotalCount()
+        public int GetTotalCountForFilter(
+            string jsn = "",
+            string measurementPoint = "",
+            int? shop = null,
+            DateTime? fromDate = null,
+            DateTime? toDate = null)
         {
-            var result = _dbContext.Measurements.Count();
+            var query = _dbContext.Measurements.AsQueryable();
 
-            return result;
+            if (!string.IsNullOrWhiteSpace(jsn))
+            {
+                query = query.Where(x => x.Vehicle.JSN == jsn);
+            }
+            if (!string.IsNullOrWhiteSpace(measurementPoint))
+            {
+                query = query.Where(x => x.MeasurementPoint.Name == measurementPoint);
+            }
+            if (shop.HasValue)
+            {
+                query = query.Where(x => x.ShopId == shop.Value);
+            }
+            if (fromDate.HasValue)
+            {
+                query = query.Where(x => x.Date >= fromDate);
+            }
+            if (toDate.HasValue)
+            {
+                query = query.Where(x => x.Date <= toDate);
+            }
+
+            return query.Count();
         }
 
-        public async Task<List<Measurement>> GetAllWithParentsPaged(int page = 1, int size = 50)
+        public async Task<List<Measurement>> GetByFilterPaged(
+            bool includeParents = false,
+            int page = 1, 
+            int size = 50, 
+            string jsn = "", 
+            string measurementPoint = "", 
+            int? shop = null, 
+            DateTime? fromDate = null, 
+            DateTime? toDate = null)
         {
-            var result = await _dbContext.Measurements
-                .Include(x => x.MeasurementPoint)
-                .Include(x => x.Vehicle)
-                .Include(x => x.Shop)
+            var query = _dbContext.Measurements
                 .Skip((page - 1) * size)
-                .Take(size)
-                .OrderBy(x => x.Id).ToListAsync();
+                .Take(size);
 
-            return result;
-        }
+            if (includeParents)
+            {
+                query = query
+                    .Include(x => x.MeasurementPoint)
+                    .Include(x => x.Vehicle)
+                    .Include(x => x.Shop);
+            }
 
-        public async Task<List<Measurement>> GetAllPaged(int page = 1, int size = 50)
-        {
-            var result = await _dbContext.Measurements
-                .Skip((page - 1) * size)
-                .Take(size)
-                .OrderBy(x => x.Id).ToListAsync();
+            if (!string.IsNullOrWhiteSpace(jsn))
+            {
+                query = query.Where(x => x.Vehicle.JSN == jsn);
+            }
+            if (!string.IsNullOrWhiteSpace(measurementPoint))
+            {
+                query = query.Where(x => x.MeasurementPoint.Name == measurementPoint);
+            }
+            if (shop.HasValue)
+            {
+                query = query.Where(x => x.ShopId == shop.Value);
+            }
+            if (fromDate.HasValue)
+            {
+                query = query.Where(x => x.Date >= fromDate);
+            }
+            if (toDate.HasValue)
+            {
+                query = query.Where(x => x.Date <= toDate);
+            }
 
-            return result;
+            query = query.OrderBy(x => x.Id);
+
+            return await query.ToListAsync();
         }
     }
 }

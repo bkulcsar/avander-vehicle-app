@@ -1,10 +1,13 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 
 import {
   MeasurementListComponent,
   MeasurementService,
   MeasurementListResolver,
+  ShopService,
+  ShopListResolver,
 } from './measurements/index';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,12 +20,18 @@ import { HttpClientModule } from '@angular/common/http';
   declarations: [AppComponent, NavBarComponent, MeasurementListComponent],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     NgbModule,
     FontAwesomeModule,
     HttpClientModule,
   ],
-  providers: [MeasurementService, MeasurementListResolver],
+  providers: [
+    MeasurementService,
+    MeasurementListResolver,
+    ShopService,
+    ShopListResolver,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

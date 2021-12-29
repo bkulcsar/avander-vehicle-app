@@ -10,8 +10,20 @@ namespace Avander.VehicleApp.Application.Contracts.Persistence
     public interface IMeasurementRepository : IAsyncRepository<Measurement>
     {
         Task<Measurement> GetUniqueByDate(int vehicleId, int shopId, int measurementPointId, DateTime date);
-        Task<List<Measurement>> GetAllWithParentsPaged(int page = 1, int size = 50);
-        Task<List<Measurement>> GetAllPaged(int page = 1, int size = 50);
-        int GetTotalCount();
+        Task<List<Measurement>> GetByFilterPaged(
+            bool includeParents = false,
+            int page = 1,
+            int size = 50,
+            string jsn = "",
+            string measurementPoint = "",
+            int? shop = null,
+            DateTime? fromDate = null,
+            DateTime? toDate = null);
+        int GetTotalCountForFilter(
+           string jsn = "",
+           string measurementPoint = "",
+           int? shop = null,
+           DateTime? fromDate = null,
+           DateTime? toDate = null);
     }
 }

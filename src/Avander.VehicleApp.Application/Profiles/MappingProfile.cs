@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Avander.VehicleApp.Application.Features.Measurements.Queries;
+using Avander.VehicleApp.Application.Features.Shops.Queries;
 using Avander.VehicleApp.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,7 @@ namespace Avander.VehicleApp.Application.Profiles
             CreateMap<Vehicle, VehicleDto>().ReverseMap();
             CreateMap<Shop, ShopDto>().ReverseMap();
             CreateMap<MeasurementPoint, MeasurementPointDto>().ReverseMap();
+            CreateMap<Shop, ShopListVm>().ReverseMap();
         }
     }
 }

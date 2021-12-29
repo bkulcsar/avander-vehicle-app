@@ -3,13 +3,17 @@ import { RouterModule, Routes } from '@angular/router';
 import {
   MeasurementListResolver,
   MeasurementListComponent,
+  ShopListResolver,
 } from './measurements/index';
 
 const routes: Routes = [
   {
     path: '',
     component: MeasurementListComponent,
-    resolve: { measurementsResponse: MeasurementListResolver },
+    resolve: {
+      measurementsResponse: MeasurementListResolver,
+      shops: ShopListResolver,
+    },
   },
 ];
 

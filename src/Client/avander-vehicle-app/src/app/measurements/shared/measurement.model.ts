@@ -1,3 +1,7 @@
+import { IMeasurementPoint } from './measurementPoint.model';
+import { IShop } from './shop.model';
+import { IVehicle } from './vehicle.model';
+
 export interface IMeasurement {
   id: number;
   gap?: number;
@@ -9,20 +13,4 @@ export interface IMeasurement {
   measurementPoint?: IMeasurementPoint;
   shopId: number;
   shop?: IShop;
-}
-
-interface IVehicle {
-  vehicleId: number;
-  jsn: string;
-  vehicleModel: string;
-}
-
-interface IMeasurementPoint {
-  measurementPointId: number;
-  name: string;
-}
-
-interface IShop {
-  shopId: number;
-  name: string;
 }

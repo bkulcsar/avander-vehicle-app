@@ -1,18 +1,24 @@
 <div>
   <div class="row">
     <div class="col">
-      <div class="row">
+      <div class="row mt-2">
         <div class="col"><h5>Filters</h5></div>
       </div>
       <div class="row">
-        <div class="col-5">
+        <div class="col-4">
           <div class="row mb-2">
             <div class="col">
               <div class="input-group">
                 <div class="input-group-prepend">
                   <span class="input-group-text">JSN</span>
                 </div>
-                <input type="text" class="form-control" />
+                <input
+                  id="jsnFilter"
+                  name="jsnFilter"
+                  [(ngModel)]="jsnFilter"
+                  type="text"
+                  class="form-control"
+                />
               </div>
             </div>
           </div>
@@ -22,13 +28,16 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text">Shop</span>
                 </div>
-
-                <input type="text" class="form-control" />
+                <select class="form-control" [(ngModel)]="shopFilter">
+                  <option *ngFor="let shop of shops" [value]="shop.shopId">
+                    {{ shop.name }}
+                  </option>
+                </select>
               </div>
             </div>
           </div>
         </div>
-        <div class="col-5">
+        <div class="col-6">
           <div class="row mb-2">
             <div class="col">
               <div class="input-group">
@@ -36,18 +45,43 @@
                   <span class="input-group-text">Measurement Point</span>
                 </div>
 
-                <input type="text" class="form-control" />
+                <input
+                  type="text"
+                  class="form-control"
+                  id="measurementPointFilter"
+                  name="measurementPointFilter"
+                  [(ngModel)]="measurementPointFilter"
+                />
               </div>
             </div>
           </div>
           <div class="row mb-2">
-            <div class="col">
+            <div class="col-6">
               <div class="input-group">
                 <div class="input-group-prepend">
-                  <span class="input-group-text">Date</span>
+                  <span class="input-group-text">From Date</span>
                 </div>
-
-                <input type="text" class="form-control" />
+                <input
+                  type="date"
+                  class="form-control"
+                  id="fromDateFilter"
+                  name="fromDateFilter"
+                  [(ngModel)]="fromDateFilter"
+                />
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">To Date</span>
+                </div>
+                <input
+                  type="date"
+                  class="form-control"
+                  id="toDateFilter"
+                  name="toDateFilter"
+                  [(ngModel)]="toDateFilter"
+                />
               </div>
             </div>
           </div>
@@ -55,12 +89,24 @@
         <div class="col-2">
           <div class="row mb-2">
             <div class="col">
-              <button type="button" class="btn btn-info w-100">Apply</button>
+              <button
+                (click)="onApplyFilterClick()"
+                type="button"
+                class="btn btn-info w-100"
+              >
+                Apply
+              </button>
             </div>
           </div>
           <div class="row">
             <div class="col">
-              <button type="button" class="btn btn-light w-100">Clear</button>
+              <button
+                type="button"
+                class="btn btn-light w-100"
+                (click)="onClearFilterClick()"
+              >
+                Clear
+              </button>
             </div>
           </div>
         </div>
@@ -111,8 +157,14 @@
               <span aria-hidden="true">&laquo;</span>
             </a>
           </li>
-          <li class="page-item" *ngFor="let number of pageNumber">
-            <a class="page-link" href="#">{{ number }}</a>
+          <li
+            class="page-item"
+            [class.active]="isPageActive(number)"
+            *ngFor="let number of pageNumbers"
+          >
+            <a class="page-link" (click)="onPageClick(number)" href="#">{{
+              number
+            }}</a>
           </li>
           <li class="page-item">
             <a class="page-link" href="#" aria-label="Next">

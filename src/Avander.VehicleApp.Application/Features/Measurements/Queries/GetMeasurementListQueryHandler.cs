@@ -14,22 +14,13 @@ namespace Avander.VehicleApp.Application.Features.Measurements.Queries
     public class GetMeasurementListQueryHandler : IRequestHandler<GetMeasurementListQuery, GetMeasurementListQueryResponse>
     {
         private readonly IMeasurementRepository _measurementRepository;
-        private readonly IVehicleRepository _vehicleRepository;
-        private readonly IShopRepository _shopRepository;
-        private readonly IMeasurementPointRepository _measurementPointRepository;
         private readonly IMapper _mapper;
 
         public GetMeasurementListQueryHandler(
             IMeasurementRepository measurementRepository,
-            IVehicleRepository vehicleRepository,
-            IShopRepository shopRepository,
-            IMeasurementPointRepository measurementPointRepository,
             IMapper mapper)
         {
             _measurementRepository = measurementRepository;
-            _measurementPointRepository = measurementPointRepository;
-            _shopRepository = shopRepository;
-            _vehicleRepository = vehicleRepository;
             _mapper = mapper;
         }
 
@@ -40,22 +31,31 @@ namespace Avander.VehicleApp.Application.Features.Measurements.Queries
                 MeasurementListVms = new List<MeasurementListVm>(),
                 TotalCount = 0
             };
+
             List<Measurement> result;
+
             var page = request.Page.HasValue ? request.Page.Value : 1;
             var size = request.Size.HasValue ? request.Size.Value : 50;
-
-            if (request.Expand.HasValue && request.Expand.Value)
-            {
-                result =  await _measurementRepository.GetAllWithParentsPaged(page, size);
-            }
-            else
-            {
-                result = await _measurementRepository.GetAllPaged(page, size);
-            }
+            var includeParents = request.Expand.HasValue ? request.Expand.Value : false;
+            
+            result =  await _measurementRepository.GetByFilterPaged(
+                includeParents,
+                page,
+                size,
+                request.JSN,
+                request.MeasurementPoint,
+                request.Shop,
+                request.FromDate,
+                request.ToDate);
 
             if (result != null && result.Count > 0)
             {
-                var total = _measurementRepository.GetTotalCount();
+                var total = _measurementRepository.GetTotalCountForFilter(request.JSN,
+                    request.MeasurementPoint,
+                    request.Shop,
+                    request.FromDate,
+                    request.ToDate);
+
                 response.TotalCount = total;
 
                 foreach (var measurement in result)
