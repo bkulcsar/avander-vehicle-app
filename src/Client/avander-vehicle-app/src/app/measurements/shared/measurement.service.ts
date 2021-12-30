@@ -76,5 +76,5 @@ export interface IFilter {
   measurementPoint?: string;
   fromDate?: Date;
   toDate?: Date;
-  shop?: string;
+  shopId?: string;
 }

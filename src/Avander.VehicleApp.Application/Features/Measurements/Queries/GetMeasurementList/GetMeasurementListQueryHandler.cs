@@ -44,7 +44,7 @@ namespace Avander.VehicleApp.Application.Features.Measurements.Queries
                 size,
                 request.JSN,
                 request.MeasurementPoint,
-                request.Shop,
+                request.ShopId,
                 request.FromDate,
                 request.ToDate);
 
@@ -52,7 +52,7 @@ namespace Avander.VehicleApp.Application.Features.Measurements.Queries
             {
                 var total = _measurementRepository.GetTotalCountForFilter(request.JSN,
                     request.MeasurementPoint,
-                    request.Shop,
+                    request.ShopId,
                     request.FromDate,
                     request.ToDate);
 

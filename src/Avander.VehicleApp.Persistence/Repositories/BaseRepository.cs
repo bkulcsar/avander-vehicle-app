@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -48,6 +49,33 @@ namespace Avander.VehicleApp.Persistence.Repositories
 
         public async Task UpdateAsync(T entity)
         {
+            _dbContext.Set<T>().Attach(entity);
+            _dbContext.Entry(entity).State = EntityState.Modified;
+
+            var entry = _dbContext.Entry(entity);
+
+            Type type = typeof(T);
+            PropertyInfo[] properties = type.GetProperties();
+            foreach (PropertyInfo property in properties)
+            {
+                if (property.GetValue(entity, null) == null)
+                {
+                    var prop = entry.Metadata.GetProperties().Where(prop => prop.Name == property.Name).FirstOrDefault();
+                    if (prop != null)
+                    {
+                        entry.Property(property.Name).IsModified = false;
+                    }
+                    else
+                    {
+                        var nav = entry.Metadata.GetNavigations().Where(nav => nav.Name == property.Name).FirstOrDefault();
+                        if (nav != null)
+                        {
+                            entry.Navigation(property.Name).IsModified = false;
+                        }
+                    }    
+                }
+            }
+
             await _dbContext.SaveChangesAsync();
         }
     }

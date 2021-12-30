@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -11,16 +12,20 @@ namespace Avander.VehicleApp.Domain.Entities
     {
         public int Id { get; set; }
 
-        public int VehicleId { get; set; }
+        [Required]
+        public int? VehicleId { get; set; }
         public Vehicle Vehicle { get; set; }
 
-        public int ShopId { get; set; }
+        [Required]
+        public int? ShopId { get; set; }
         public Shop Shop { get; set; }
 
-        public int MeasurementPointId { get; set; }
+        [Required]
+        public int? MeasurementPointId { get; set; }
         public MeasurementPoint MeasurementPoint { get; set; }
 
-        public DateTime Date { get; set; }
+        [Required]
+        public DateTime? Date { get; set; }
 
         [Column(TypeName = "decimal(8, 2)")]
         public decimal? Gap { get; set; }

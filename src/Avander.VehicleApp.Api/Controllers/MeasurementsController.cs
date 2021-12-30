@@ -1,5 +1,8 @@
 ﻿using Avander.VehicleApp.Application.Features.Measurements.Commands;
+using Avander.VehicleApp.Application.Features.Measurements.Commands.DeleteMeasurement;
+using Avander.VehicleApp.Application.Features.Measurements.Commands.UpdateMeasurement;
 using Avander.VehicleApp.Application.Features.Measurements.Queries;
+using Avander.VehicleApp.Application.Features.Measurements.Queries.GetMeasurement;
 using Avander.VehicleApp.Application.Models;
 using MediatR;
 using Microsoft.AspNetCore.Http;
@@ -42,5 +45,27 @@ namespace Avander.VehicleApp.Api.Controllers
             return Ok(result.MeasurementListVms);
         }
 
+        [HttpGet("{id}", Name = "GetMeasurementById")]
+        public async Task<ActionResult<MeasurementVm>> GetMeasurementById(int id)
+        {
+            var result = await _mediator.Send(new GetMeasurementQuery { Id = id });
+
+            return Ok(result);
+        }
+
+        [HttpPut(Name = "UpdateMeasurement")]
+        public async Task<ActionResult> Update([FromBody] UpdateMeasurementCommand updateMeasurementCommand)
+        {
+            await _mediator.Send(updateMeasurementCommand);
+            return NoContent();
+        }
+
+        [HttpDelete("{id}", Name = "DeleteMeasurement")]
+        public async Task<ActionResult> Delete(int id)
+        {
+            var deleteMeasurementCommand = new DeleteMeasurementCommand() { Id = id };
+            await _mediator.Send(deleteMeasurementCommand);
+            return NoContent();
+        }
     }
 }

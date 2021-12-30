@@ -152,14 +152,31 @@
     <div class="col">
       <nav>
         <ul class="pagination justify-content-center">
+          <li class="page-item disabled" *ngIf="activePage + 5 > 11">
+            <a class="page-link" href="#" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
           <li
             class="page-item"
             [class.active]="isPageActive(number)"
             *ngFor="let number of pageNumbers"
           >
-            <a class="page-link" (click)="onPageClick(number)" href="#">{{
-              number
-            }}</a>
+            <a
+              *ngIf="activePage + 5 >= number && activePage - 5 <= number"
+              class="page-link"
+              (click)="onPageClick(number)"
+              href="#"
+              >{{ number }}</a
+            >
+          </li>
+          <li
+            class="page-item disabled"
+            *ngIf="activePage + 5 < pageNumbers.length"
+          >
+            <a class="page-link" href="#" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
           </li>
         </ul>
       </nav>

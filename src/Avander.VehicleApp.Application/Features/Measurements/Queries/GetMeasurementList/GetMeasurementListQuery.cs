@@ -26,8 +26,8 @@ namespace Avander.VehicleApp.Application.Features.Measurements.Queries
         [FromQuery(Name = "measurementpoint")]
         public string MeasurementPoint { get; set; }
 
-        [FromQuery(Name = "shop")]
-        public int? Shop { get; set; }
+        [FromQuery(Name = "shopId")]
+        public int? ShopId { get; set; }
 
         [FromQuery(Name = "fromdate")]
         public DateTime? FromDate { get; set; }

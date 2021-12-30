@@ -56,7 +56,7 @@ export class MeasurementListComponent implements OnInit {
         measurementPoint: this.measurementPointFilter,
         fromDate: this.fromDateFilter,
         toDate: this.toDateFilter,
-        shop: this.shopFilter,
+        shopId: this.shopFilter,
       })
       .subscribe((response) => {
         this.measurements = response.body;

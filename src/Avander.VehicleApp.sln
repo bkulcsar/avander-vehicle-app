@@ -11,13 +11,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{CBB1ADDB-9
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{B9F0A889-B357-480D-BCD6-292A71621937}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Avander.VehicleApp.Api", "Avander.VehicleApp.Api\Avander.VehicleApp.Api.csproj", "{55C576B3-E65E-457F-AB5F-DF042259A8CD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Avander.VehicleApp.Api", "Avander.VehicleApp.Api\Avander.VehicleApp.Api.csproj", "{55C576B3-E65E-457F-AB5F-DF042259A8CD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Avander.VehicleApp.Domain", "Avander.VehicleApp.Domain\Avander.VehicleApp.Domain.csproj", "{5A77755D-71C5-4C05-8F60-CFB411C65E94}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Avander.VehicleApp.Domain", "Avander.VehicleApp.Domain\Avander.VehicleApp.Domain.csproj", "{5A77755D-71C5-4C05-8F60-CFB411C65E94}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Avander.VehicleApp.Persistence", "Avander.VehicleApp.Persistence\Avander.VehicleApp.Persistence.csproj", "{6F1EE1F8-8836-4262-9185-B0BEC3823246}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Avander.VehicleApp.Persistence", "Avander.VehicleApp.Persistence\Avander.VehicleApp.Persistence.csproj", "{6F1EE1F8-8836-4262-9185-B0BEC3823246}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Avander.VehicleApp.Application", "Avander.VehicleApp.Application\Avander.VehicleApp.Application.csproj", "{9603B275-62CB-4AD6-9FE0-8B889039096B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Avander.VehicleApp.Application", "Avander.VehicleApp.Application\Avander.VehicleApp.Application.csproj", "{9603B275-62CB-4AD6-9FE0-8B889039096B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{350B2E46-B89E-4B0B-8A19-618E5EFB1B19}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Avander.VehicleApp.Application.UnitTests", "Avander.VehicleApp.Application.UnitTests\Avander.VehicleApp.Application.UnitTests.csproj", "{AD5CA580-B1AD-4D31-844A-A6C1A69EF6A0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +45,10 @@ Global
 		{9603B275-62CB-4AD6-9FE0-8B889039096B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9603B275-62CB-4AD6-9FE0-8B889039096B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9603B275-62CB-4AD6-9FE0-8B889039096B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD5CA580-B1AD-4D31-844A-A6C1A69EF6A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD5CA580-B1AD-4D31-844A-A6C1A69EF6A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD5CA580-B1AD-4D31-844A-A6C1A69EF6A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD5CA580-B1AD-4D31-844A-A6C1A69EF6A0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -53,6 +61,7 @@ Global
 		{5A77755D-71C5-4C05-8F60-CFB411C65E94} = {CBB1ADDB-9F2D-47CF-88D4-87B21ECCF4DE}
 		{6F1EE1F8-8836-4262-9185-B0BEC3823246} = {B9F0A889-B357-480D-BCD6-292A71621937}
 		{9603B275-62CB-4AD6-9FE0-8B889039096B} = {CBB1ADDB-9F2D-47CF-88D4-87B21ECCF4DE}
+		{AD5CA580-B1AD-4D31-844A-A6C1A69EF6A0} = {350B2E46-B89E-4B0B-8A19-618E5EFB1B19}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EB1D3304-984E-4C41-B2E0-EAE528358D27}
