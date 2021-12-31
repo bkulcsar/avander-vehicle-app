@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="MediatR" Version="9.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="5.0.13" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.13">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -17,5 +18,4 @@
     <ProjectReference Include="..\Avander.VehicleApp.Application\Avander.VehicleApp.Application.csproj" />
     <ProjectReference Include="..\Avander.VehicleApp.Persistence\Avander.VehicleApp.Persistence.csproj" />
   </ItemGroup>
-
 </Project>

@@ -3,6 +3,7 @@ using Avander.VehicleApp.Application;
 using Avander.VehicleApp.Persistence;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -30,6 +31,11 @@ namespace Avander.VehicleApp.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSpaStaticFiles(options =>
+            {
+                options.RootPath = "Client/avander-vehicle-app/dist/avander-vehicle-app";
+            });
+
             services.AddApplicationServices();
             services.AddPersistenceServices(Configuration);
             services.AddControllers();
@@ -59,6 +65,12 @@ namespace Avander.VehicleApp.Api
 
             app.UseHttpsRedirection();
 
+            app.UseStaticFiles();
+            if (!env.IsDevelopment())
+            {
+                app.UseSpaStaticFiles();
+            }
+
             app.UseRouting();
             app.UseCustomExceptionHandler();
             app.UseAuthorization();
@@ -67,6 +79,19 @@ namespace Avander.VehicleApp.Api
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+            });
+
+            app.UseSpa(spa =>
+            {
+                if (env.IsDevelopment())
+                {
+                    spa.Options.SourcePath = "../Client/avander-vehicle-app";
+                    spa.UseAngularCliServer(npmScript: "start");
+                }
+                else
+                {
+                    spa.Options.SourcePath = "Client/avander-vehicle-app";
+                }
             });
         }
     }
